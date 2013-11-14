@@ -35,7 +35,7 @@ class ResizerTestCase(unittest.TestCase):
         
         html = '<img src="http://www.foobar.com">'
         output = self.transform(html)        
-        self.assertEqual(output, '<img src="http://localhost/@@resizer?url=http%3A%2F%2Fwww.foobar.com" alt="" style="float: none" class="mobile-resized"/>', "Got:" + output)
+        self.assertEqual(output, '<img src="http://localhost/@@resizer?url=http%3A%2F%2Fwww.foobar.com" alt="" style="float: none" class="mobile-resized">', "Got:" + output)
                 
     def test_alt(self):
         """ Check that existing ALT attribute stays untouched """
@@ -60,13 +60,13 @@ class ResizerTestCase(unittest.TestCase):
         self.assertTrue('float: none' in output, "Got:" + output)
         
     def test_process_existing_float_multi_style(self):
-        html = '<img src="http://www.foobar.com" style="float: left; border: 1px solid black" ALT="asdasdbar" />'
+        html = '<img src="http://www.foobar.com" style="float: left; border: 1px solid black" ALT="asdasdbar" >'
         output = self.transform(html)        
         self.assertTrue('solid black' in output, "Got:" + output)
         self.assertFalse('left' in output, "Got:" + output)
 
     def test_process_existing_float_hyper_multi_style(self):
-        html = '<img src="http://www.foobar.com" style="display: none; float: left; border: 1px solid black" ALT="asdasdbar" />'
+        html = '<img src="http://www.foobar.com" style="display: none; float: left; border: 1px solid black" ALT="asdasdbar" >'
         output = self.transform(html)        
         self.assertTrue('solid black' in output, "Got:" + output)
         self.assertFalse('left' in output, "Got:" + output)

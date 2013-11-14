@@ -100,7 +100,7 @@ if LXML:
             if not self.trusted:
                 self(doc)
     
-            return tostring(doc, method="xml", encoding='UTF-8')
+            return tostring(doc, method="html", encoding='UTF-8')
 
 else:
     # No LXML

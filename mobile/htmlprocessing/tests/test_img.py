@@ -19,18 +19,24 @@ class ImageTestCase(unittest.TestCase):
         
         html = '<img src="http://www.foobar.com">'
         output = fix_html(html)        
-        self.assertEqual(output, '<img src="http://www.foobar.com" alt=""/>', "Got:" + output)
+        self.assertEqual(output, '<img src="http://www.foobar.com" alt="">', "Got:" + output)
                 
     def test_no_modify_existing_alt(self):
         """ Check that existing ALT attribute stays untouched """
         html = '<img src="http://www.foobar.com" alt="bar">'
         output = fix_html(html)        
-        self.assertEqual(output, '<img src="http://www.foobar.com" alt="bar"/>', "Got:" + output)
+        self.assertEqual(output, '<img src="http://www.foobar.com" alt="bar">', "Got:" + output)
         
     def test_no_modify_existing_alt_caps(self):
         html = '<img src="http://www.foobar.com" ALT="bar">'
         output = fix_html(html)        
-        self.assertEqual(output, '<img src="http://www.foobar.com" alt="bar"/>', "Got:" + output)
+        self.assertEqual(output, '<img src="http://www.foobar.com" alt="bar">', "Got:" + output)
+
+    def test_no_modify_anchor(self):
+        """An <a> tag before an <img> is not modified."""
+        html = '<a name="anchor"></a><img src="http://www.foobar.com" alt="bar">'
+        output = fix_html(html)
+        self.assertIn('<a name="anchor"></a>', output, "Got:" + output)
 
 
 def test_suite():    
