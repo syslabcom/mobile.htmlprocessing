@@ -6,7 +6,7 @@ Changelog
 
 * Don't de-float Wordpress smileys [miohtama]
 
-* 
+* Use method="html" in tostring() call, fixes display issues [reinhardt]
 
 0.9.2 - 1.0.0
 -------------------
